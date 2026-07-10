@@ -1,0 +1,551 @@
+/* ==========================================
+   JOHAR SANTALI WORKSPACE STYLESHEET
+   Green, Red, White Theme with Glassmorphism
+   ========================================== */
+
+/* Theme Variables */
+:root {
+    --primary-green: #0A5C36;
+    --primary-red: #8A0F11;
+    --white: #FFFFFF;
+    --dark-bg: #0F172A;
+    --card-light: rgba(255, 255, 255, 0.75);
+    --card-dark: rgba(30, 41, 59, 0.75);
+    
+    /* Font Pairing */
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-olchiki: 'Noto Sans Ol Chiki', sans-serif;
+
+    /* Light Theme Defaults */
+    --bg-color: #F8FAFC;
+    --text-color: #1E293B;
+    --text-muted: #64748B;
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --glass-border: rgba(10, 92, 54, 0.15);
+    --card-shadow: 0 8px 32px 0 rgba(10, 92, 54, 0.08);
+    --nav-bg: rgba(255, 255, 255, 0.85);
+    --accent-glow: rgba(10, 92, 54, 0.2);
+}
+
+/* Dark Theme Overrides */
+body.dark-theme {
+    --bg-color: #0B0F19;
+    --text-color: #F1F5F9;
+    --text-muted: #94A3B8;
+    --glass-bg: rgba(15, 23, 42, 0.75);
+    --glass-border: rgba(138, 15, 17, 0.2);
+    --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    --nav-bg: rgba(15, 23, 42, 0.9);
+    --accent-glow: rgba(138, 15, 17, 0.3);
+}
+
+/* Custom Color Badges */
+.bg-success-light { background-color: rgba(10, 92, 54, 0.12) !important; color: #0A5C36 !important; }
+.bg-danger-light { background-color: rgba(138, 15, 17, 0.12) !important; color: #8A0F11 !important; }
+.bg-warning-light { background-color: rgba(217, 119, 6, 0.12) !important; color: #D97706 !important; }
+.bg-primary-light { background-color: rgba(37, 99, 235, 0.12) !important; color: #2563EB !important; }
+.bg-info-light { background-color: rgba(8, 145, 178, 0.12) !important; color: #0891B2 !important; }
+.bg-pink-light { background-color: rgba(219, 39, 119, 0.12) !important; color: #DB2777 !important; }
+.bg-purple-light { background-color: rgba(147, 51, 234, 0.12) !important; color: #9333EA !important; }
+.bg-teal-light { background-color: rgba(13, 148, 136, 0.12) !important; color: #0D9488 !important; }
+
+/* Custom Light Accent Texts */
+.text-success-light { color: #5EFF9E !important; }
+.text-danger-light { color: #FF7B7D !important; }
+.text-warning-light { color: #FFD25E !important; }
+
+/* Global Styling Reset */
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    font-family: var(--font-sans);
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    user-select: none;
+}
+
+/* Typography Overrides */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+}
+
+.font-olchiki {
+    font-family: var(--font-olchiki) !important;
+}
+
+/* Glassmorphism Card System */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.glass-card:active {
+    transform: scale(0.98);
+}
+
+/* Splash Screen Container */
+.splash-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #0A5C36 0%, #032113 50%, #8A0F11 100%);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.splash-logo {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border: 4px solid var(--white);
+}
+
+.splash-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -1px;
+}
+
+.splash-subtitle {
+    font-size: 1.1rem;
+    color: #FFD25E;
+    font-weight: 500;
+}
+
+.splash-progress-container {
+    width: 200px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    width: 0%;
+    height: 100%;
+    background: #FFD25E;
+    border-radius: 10px;
+    animation: fill-progress 2s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes fill-progress {
+    to { width: 100%; }
+}
+
+/* Top Navigation Header */
+.app-header {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--glass-border);
+    height: 60px;
+    z-index: 1000;
+}
+
+.header-logo {
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+}
+
+.header-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.header-status {
+    font-size: 0.65rem;
+    display: block;
+    color: var(--text-muted);
+}
+
+/* Icon Buttons & Click Feedback */
+.icon-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(10, 92, 54, 0.08);
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+body.dark-theme .icon-btn {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.icon-btn:active {
+    background: rgba(10, 92, 54, 0.15);
+    transform: scale(0.92);
+}
+
+.icon-btn-large {
+    width: 54px;
+    height: 54px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.1s ease;
+}
+
+.icon-btn-large:active {
+    transform: scale(0.9);
+}
+
+/* Custom Bottom Navigation Bar */
+.app-bottom-nav {
+    background: var(--nav-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid var(--glass-border);
+    height: 70px;
+    z-index: 1050;
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.nav-item-btn {
+    background: none;
+    border: none;
+    outline: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    font-weight: 600;
+    width: 64px;
+    transition: color 0.2s ease;
+    position: relative;
+}
+
+.nav-item-btn span.material-symbols-outlined {
+    font-size: 24px;
+    font-variation-settings: 'FILL' 0, 'wght' 400;
+    transition: font-variation-settings 0.2s, transform 0.2s;
+    padding: 4px 14px;
+    border-radius: 16px;
+}
+
+.nav-item-btn.active {
+    color: var(--primary-green);
+}
+
+body.dark-theme .nav-item-btn.active {
+    color: #FF7B7D;
+}
+
+.nav-item-btn.active span.material-symbols-outlined {
+    font-variation-settings: 'FILL' 1, 'wght' 600;
+    background: rgba(10, 92, 54, 0.12);
+    transform: translateY(-2px);
+}
+
+body.dark-theme .nav-item-btn.active span.material-symbols-outlined {
+    background: rgba(138, 15, 17, 0.2);
+}
+
+/* Welcome Hero Banner */
+.welcome-section {
+    background-size: cover;
+    background-position: center;
+    border-radius: 0 0 24px 24px;
+    position: relative;
+}
+
+.welcome-headline {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.welcome-desc {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* Horizontal scrolling shelf */
+.scrolling-row {
+    scrollbar-width: none;
+}
+
+.scrolling-row::-webkit-scrollbar {
+    display: none;
+}
+
+.scroll-card {
+    width: 190px;
+}
+
+.scroll-card-img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+}
+
+/* Circular Category grid icons */
+.quick-icon-wrapper {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    margin: 0 auto 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.quick-icon-wrapper span {
+    font-size: 28px;
+}
+
+.col:active .quick-icon-wrapper {
+    transform: scale(0.9);
+}
+
+.quick-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--text-color);
+    display: block;
+}
+
+/* Custom Pills Layout */
+.custom-pills .nav-link, 
+.custom-pills-danger .nav-link,
+.custom-pills-teal .nav-link {
+    background: var(--glass-bg);
+    color: var(--text-color);
+    border: 1px solid var(--glass-border);
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-right: 8px;
+    transition: all 0.2s ease;
+}
+
+.custom-pills .nav-link.active {
+    background-color: var(--primary-green) !important;
+    color: var(--white);
+}
+
+.custom-pills-danger .nav-link.active {
+    background-color: var(--primary-red) !important;
+    color: var(--white);
+}
+
+.custom-pills-teal .nav-link.active {
+    background-color: #0D9488 !important;
+    color: var(--white);
+}
+
+/* Ol Chiki Letter Box */
+.letter-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    text-align: center;
+    padding: 16px 8px;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.letter-card:active {
+    transform: scale(0.95);
+    background-color: rgba(10, 92, 54, 0.08);
+}
+
+.letter-main {
+    font-family: var(--font-olchiki);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--primary-green);
+    margin: 0;
+}
+
+body.dark-theme .letter-main {
+    color: #FFD25E;
+}
+
+.letter-name {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.letter-roman {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+}
+
+/* Word Cards */
+.word-card {
+    border-left: 4px solid var(--primary-green);
+}
+
+.word-main {
+    font-family: var(--font-olchiki);
+    font-size: 1.35rem;
+}
+
+/* Modals & Drawers System */
+.custom-drawer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid var(--glass-border);
+    border-radius: 24px 24px 0 0;
+    z-index: 1200;
+    transform: translateY(100%);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    max-height: 85%;
+    overflow-y: auto;
+}
+
+.custom-drawer.show {
+    transform: translateY(0);
+}
+
+.custom-full-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--bg-color);
+    z-index: 1100;
+    display: none;
+    flex-direction: column;
+}
+
+.custom-full-modal.show {
+    display: flex;
+    animation: modal-slide-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modal-slide-in {
+    from { transform: translateY(40px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* AI Result Box */
+.ai-result-box {
+    background: rgba(10, 92, 54, 0.05);
+    border: 1px solid var(--primary-green);
+    border-radius: 12px;
+    padding: 16px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Chat Bubbles */
+.chat-message {
+    padding: 12px 16px;
+    border-radius: 18px;
+    max-width: 80%;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.chat-message.bot {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    align-self: flex-start;
+}
+
+.chat-message.user {
+    background: var(--primary-green);
+    color: var(--white);
+    align-self: flex-end;
+}
+
+/* Giant Letter for Quiz */
+.letter-giant {
+    font-size: 6.5rem;
+    font-weight: 800;
+    animation: bounce-loop 4s ease-in-out infinite;
+}
+
+/* Animations */
+.pulse-animation {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+    100% { transform: scale(1); }
+}
+
+/* Canvas Box */
+.canvas-container {
+    max-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Photo and Video placeholders */
+.border-dashed {
+    border-style: dashed !important;
+    border-width: 2px !important;
+    border-color: var(--text-muted) !important;
+}
+
+/* Avatar list */
+.user-avatar-small {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+}
+
+.user-avatar-large {
+    width: 72px;
+    height: 72px;
+    object-fit: cover;
+}
+
+.user-avatar-edit {
+    width: 90px;
+    height: 90px;
+}
+
+/* Slide bg for Carousel */
+.carousel-slide-bg {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+.quote-olchiki {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}

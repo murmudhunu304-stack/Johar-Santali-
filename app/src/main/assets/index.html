@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Johar Santali</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome & Google Material Symbols -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <!-- Google Fonts for Ol Chiki and Modern sans-serif -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ol+Chiki:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-theme">
+
+    <!-- Splash Screen -->
+    <div id="splash-screen" class="splash-container">
+        <div class="splash-content text-center">
+            <div class="logo-wrapper pulse-animation mb-4">
+                <img src="file:///android_res/drawable/johar_logo_1783660034921.jpg" alt="Johar Santali Logo" class="splash-logo img-fluid rounded-circle shadow-lg">
+            </div>
+            <h1 class="splash-title">Johar Santali</h1>
+            <p class="splash-subtitle">Ol Chiki & Cultural AI Hub</p>
+            <div class="splash-progress-container mt-4">
+                <div class="progress-bar-fill"></div>
+            </div>
+            <div class="splash-footer mt-5 text-white-50">
+                <p class="mb-0 small">Powered by Gemini 3.5 AI</p>
+                <p class="small text-danger font-weight-bold">AtoZ Smart Cultural Workspace</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App Wrapper -->
+    <div id="app-container" class="d-none">
+        <!-- Top Sticky Header -->
+        <header class="app-header d-flex align-items-center justify-content-between px-3 py-2 sticky-top shadow-sm">
+            <div class="header-brand d-flex align-items-center gap-2">
+                <img src="file:///android_res/drawable/johar_logo_1783660034921.jpg" alt="Logo" class="header-logo rounded-circle">
+                <div>
+                    <h2 class="header-title m-0">Johar Santali</h2>
+                    <span class="header-status m-0" id="network-badge"><i class="fas fa-circle text-success me-1"></i>Offline Ready</span>
+                </div>
+            </div>
+            <div class="header-actions d-flex align-items-center gap-2">
+                <button class="icon-btn" id="search-trigger-btn" onclick="openSearchModal()" title="Search everything">
+                    <span class="material-symbols-outlined">search</span>
+                </button>
+                <button class="icon-btn" id="theme-toggle-btn" onclick="toggleTheme()" title="Toggle dark/light mode">
+                    <span class="material-symbols-outlined" id="theme-icon">dark_mode</span>
+                </button>
+                <div class="avatar-badge" onclick="navigateToTab('settings')">
+                    <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Johar" alt="User Avatar" class="user-avatar-small" id="header-avatar">
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Scrolling Content Area -->
+        <main class="app-content pb-5">
+            
+            <!-- HOME TAB VIEW -->
+            <section id="view-home" class="tab-view active">
+                <!-- Welcome Banner & Quote -->
+                <div class="welcome-section p-3 mb-3" style="background-image: linear-gradient(180deg, rgba(10, 92, 54, 0.8) 0%, rgba(138, 15, 17, 0.9) 100%), url('file:///android_res/drawable/santali_banner_1783660020352.jpg');">
+                    <div class="welcome-content text-white py-3">
+                        <span class="badge bg-success mb-2 px-3 py-2">Johar! (Greeting)</span>
+                        <h3 class="welcome-headline">Saghun Daram!</h3>
+                        <p class="welcome-desc">Explore Ol Chiki learning, AI text engines, and rich Santali cultural treasures in one premium space.</p>
+                        <div class="search-box mt-3">
+                            <div class="input-group">
+                                <span class="input-group-text bg-white border-0"><i class="fas fa-search text-muted"></i></span>
+                                <input type="text" class="form-control border-0" placeholder="Search lessons, dictionary or tools..." onfocus="openSearchModal()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Daily Quote Card -->
+                <div class="container-fluid mb-4">
+                    <div class="quote-card glass-card p-3 shadow-sm border-start border-success border-4">
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <span class="quote-tag"><span class="material-symbols-outlined align-middle me-1 fs-5">format_quote</span>Daily Santali Quote</span>
+                            <button class="icon-btn-small" onclick="speakText(document.getElementById('daily-quote-text').innerText)" title="Speak Text">
+                                <span class="material-symbols-outlined fs-5">volume_up</span>
+                            </button>
+                        </div>
+                        <p class="quote-olchiki m-0 text-success fs-5 font-olchiki" id="daily-quote-olchiki">ᱡᱤᱣᱤᱫ ᱜᱮ ᱥᱮᱪᱮᱫ, ᱥᱮᱪᱮᱫ ᱜᱮ ᱡᱤᱣᱤᱫ ᱾</p>
+                        <p class="quote-text m-1 italic" id="daily-quote-text">"To live is to learn, and to learn is to live."</p>
+                        <p class="quote-author m-0 text-end small text-muted">— Santali Wisdom</p>
+                    </div>
+                </div>
+
+                <!-- Image Slider -->
+                <div class="container-fluid mb-4">
+                    <div id="homeCarousel" class="carousel slide rounded-4 overflow-hidden shadow-sm" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="0" class="active"></button>
+                            <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="2"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="carousel-slide-bg" style="background-image: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 100%), url('file:///android_res/drawable/santali_banner_1783660020352.jpg');"></div>
+                                <div class="carousel-caption text-start px-3">
+                                    <h4 class="fw-bold text-success-light">Ol Chiki Alphabet</h4>
+                                    <p class="small">Master the unique writing system invented by Pandit Raghunath Murmu.</p>
+                                    <button class="btn btn-sm btn-success rounded-pill px-3" onclick="navigateToTab('learn')">Start Learning</button>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="carousel-slide-bg" style="background-image: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 100%), url('file:///android_res/drawable/johar_logo_1783660034921.jpg');"></div>
+                                <div class="carousel-caption text-start px-3">
+                                    <h4 class="fw-bold text-danger-light">Smart Gemini AI</h4>
+                                    <p class="small">Translate, chat, and generate poems, stories & audio in Santali instantly.</p>
+                                    <button class="btn btn-sm btn-danger rounded-pill px-3" onclick="navigateToTab('ai-tools')">Open AI Tools</button>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="carousel-slide-bg" style="background-image: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 100%), url('https://images.unsplash.com/photo-1541963463532-d68292c34b19?auto=format&fit=crop&w=600&q=80');"></div>
+                                <div class="carousel-caption text-start px-3">
+                                    <h4 class="fw-bold text-warning-light">Santali History & Lore</h4>
+                                    <p class="small">Deep dive into the rebellion, culture, and heroes like Sidhu Kanhu & Birsa Munda.</p>
+                                    <button class="btn btn-sm btn-warning rounded-pill px-3 text-dark" onclick="openCultureModal()">Explore Lore</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trending / Core Features Circular Grid -->
+                <div class="container-fluid mb-4">
+                    <div class="d-flex align-items-center justify-content-between mb-3 px-1">
+                        <h4 class="section-title m-0">Quick Access Hub</h4>
+                        <span class="badge bg-danger-light text-danger">Trending</span>
+                    </div>
+                    <div class="row row-cols-4 g-2 text-center">
+                        <div class="col" onclick="navigateToSubFeature('olchiki')">
+                            <div class="quick-icon-wrapper bg-success-light text-success shadow-xs">
+                                <span class="material-symbols-outlined">spellcheck</span>
+                            </div>
+                            <span class="quick-label">Ol Chiki</span>
+                        </div>
+                        <div class="col" onclick="navigateToSubFeature('dictionary')">
+                            <div class="quick-icon-wrapper bg-danger-light text-danger shadow-xs">
+                                <span class="material-symbols-outlined">menu_book</span>
+                            </div>
+                            <span class="quick-label">Dictionary</span>
+                        </div>
+                        <div class="col" onclick="navigateToSubFeature('translator')">
+                            <div class="quick-icon-wrapper bg-primary-light text-primary shadow-xs">
+                                <span class="material-symbols-outlined">g_translate</span>
+                            </div>
+                            <span class="quick-label">AI Translate</span>
+                        </div>
+                        <div class="col" onclick="navigateToSubFeature('chat')">
+                            <div class="quick-icon-wrapper bg-warning-light text-warning shadow-xs">
+                                <span class="material-symbols-outlined">forum</span>
+                            </div>
+                            <span class="quick-label">AI Chat</span>
+                        </div>
+                        <div class="col" onclick="navigateToSubFeature('audio_tools')">
+                            <div class="quick-icon-wrapper bg-info-light text-info shadow-xs">
+                                <span class="material-symbols-outlined">volume_up</span>
+                            </div>
+                            <span class="quick-label">TTS Voice</span>
+                        </div>
+                        <div class="col" onclick="navigateToSubFeature('photo_editor')">
+                            <div class="quick-icon-wrapper bg-pink-light text-pink shadow-xs">
+                                <span class="material-symbols-outlined">image_editor</span>
+                            </div>
+                            <span class="quick-label">Photo Studio</span>
+                        </div>
+                        <div class="col" onclick="navigateToSubFeature('music_section')">
+                            <div class="quick-icon-wrapper bg-purple-light text-purple shadow-xs">
+                                <span class="material-symbols-outlined">library_music</span>
+                            </div>
+                            <span class="quick-label">Santali Music</span>
+                        </div>
+                        <div class="col" onclick="navigateToSubFeature('utilities')">
+                            <div class="quick-icon-wrapper bg-teal-light text-teal shadow-xs">
+                                <span class="material-symbols-outlined">widgets</span>
+                            </div>
+                            <span class="quick-label">AtoZ Tools</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Daily Quiz Highlight Card -->
+                <div class="container-fluid mb-4">
+                    <div class="glass-card quiz-promo p-3 d-flex align-items-center justify-content-between position-relative overflow-hidden" style="background: linear-gradient(135deg, rgba(10, 92, 54, 0.05) 0%, rgba(138, 15, 17, 0.05) 100%);">
+                        <div class="quiz-promo-content z-2">
+                            <span class="badge bg-warning text-dark mb-1"><i class="fas fa-trophy me-1"></i>Daily Quiz</span>
+                            <h5 class="m-0 fw-bold">Test Your Ol Chiki Skills</h5>
+                            <p class="small text-muted mb-2">Practice daily, earn points & learn faster.</p>
+                            <button class="btn btn-sm btn-dark rounded-pill px-3" onclick="startQuiz()">Play Now</button>
+                        </div>
+                        <span class="material-symbols-outlined promo-icon text-success-light z-1">school</span>
+                    </div>
+                </div>
+
+                <!-- Santali Culture Cards Carousel -->
+                <div class="container-fluid mb-4">
+                    <h4 class="section-title mb-3 px-1">Cultural Insights</h4>
+                    <div class="scrolling-row d-flex gap-3 overflow-auto pb-2 px-1">
+                        <!-- Card 1 -->
+                        <div class="scroll-card glass-card shadow-sm p-0 rounded-4 overflow-hidden flex-shrink-0" onclick="openHeroModal('sidhukanhu')">
+                            <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=300&q=80" alt="Sidhu Kanhu" class="scroll-card-img">
+                            <div class="p-3">
+                                <h6 class="fw-bold m-0 text-success">Sidhu & Kanhu Murmu</h6>
+                                <p class="small text-muted m-0">Leaders of the Santhal Rebellion (1855).</p>
+                            </div>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="scroll-card glass-card shadow-sm p-0 rounded-4 overflow-hidden flex-shrink-0" onclick="openHeroModal('birsamunda')">
+                            <img src="https://images.unsplash.com/photo-1608976328267-e673d3ec06ce?auto=format&fit=crop&w=300&q=80" alt="Birsa Munda" class="scroll-card-img">
+                            <div class="p-3">
+                                <h6 class="fw-bold m-0 text-danger">Birsa Munda</h6>
+                                <p class="small text-muted m-0">The legendary tribal folk hero and warrior.</p>
+                            </div>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="scroll-card glass-card shadow-sm p-0 rounded-4 overflow-hidden flex-shrink-0" onclick="openHeroModal('culture')">
+                            <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=300&q=80" alt="Dress" class="scroll-card-img">
+                            <div class="p-3">
+                                <h6 class="fw-bold m-0 text-warning">Sohrai & Baha</h6>
+                                <p class="small text-muted m-0">Sohrai harvest festival and tribal dances.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- LEARN TAB VIEW -->
+            <section id="view-learn" class="tab-view">
+                <div class="container py-3">
+                    <h3 class="fw-bold mb-1 text-success">Learn Santali</h3>
+                    <p class="text-muted mb-4">Complete learning curriculum from Ol Chiki letters to everyday sentences.</p>
+
+                    <!-- Learning Tabs Navigation -->
+                    <ul class="nav nav-pills custom-pills mb-4" id="learn-tabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active rounded-pill" id="alphabet-tab" data-bs-toggle="pill" data-bs-target="#tab-alphabet" type="button">Ol Chiki</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link rounded-pill" id="words-tab" data-bs-toggle="pill" data-bs-target="#tab-words" type="button">Word Vault</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link rounded-pill" id="sentences-tab" data-bs-toggle="pill" data-bs-target="#tab-sentences" type="button">Common Phrases</button>
+                        </li>
+                    </ul>
+
+                    <!-- Learning Tabs Content -->
+                    <div class="tab-content" id="learn-tabs-content">
+                        <!-- Ol Chiki Alphabet -->
+                        <div class="tab-pane fade show active" id="tab-alphabet" role="tabpanel">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <span class="fw-semibold text-muted">Tap on letters to hear pronunciation</span>
+                                <button class="btn btn-sm btn-outline-success rounded-pill" onclick="startQuiz('olchiki')">Test Letters</button>
+                            </div>
+                            <div class="row row-cols-3 g-3" id="ol-chiki-grid">
+                                <!-- Programmatically populated standard 30 letters of Ol Chiki -->
+                            </div>
+                        </div>
+
+                        <!-- Word Vault -->
+                        <div class="tab-pane fade" id="tab-words" role="tabpanel">
+                            <div class="d-flex gap-2 overflow-auto pb-3 mb-3" id="word-category-chips">
+                                <button class="btn btn-sm btn-success rounded-pill px-3 active" onclick="filterWordCategory('all')">All</button>
+                                <button class="btn btn-sm btn-outline-success rounded-pill px-3" onclick="filterWordCategory('numbers')">Numbers</button>
+                                <button class="btn btn-sm btn-outline-success rounded-pill px-3" onclick="filterWordCategory('animals')">Animals & Birds</button>
+                                <button class="btn btn-sm btn-outline-success rounded-pill px-3" onclick="filterWordCategory('greetings')">Greetings</button>
+                                <button class="btn btn-sm btn-outline-success rounded-pill px-3" onclick="filterWordCategory('family')">Family & People</button>
+                            </div>
+                            <div class="row row-cols-2 g-3" id="word-cards-container">
+                                <!-- Programmatically populated word cards -->
+                            </div>
+                        </div>
+
+                        <!-- Phrases / Sentences -->
+                        <div class="tab-pane fade" id="tab-sentences" role="tabpanel">
+                            <div class="search-box mb-3">
+                                <input type="text" class="form-control rounded-pill border-success" placeholder="Search daily phrases..." id="sentence-search-input" oninput="searchPhrases()">
+                            </div>
+                            <div class="d-flex flex-column gap-3" id="phrases-container">
+                                <!-- Programmatically populated phrases -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI TOOLS TAB VIEW -->
+            <section id="view-ai-tools" class="tab-view">
+                <div class="container py-3">
+                    <h3 class="fw-bold mb-1 text-danger">Santali Gemini AI Studio</h3>
+                    <p class="text-muted mb-4">Leverage intelligent models for creation, editing, writing and styling.</p>
+
+                    <!-- Nav pills for Subcategories of AI Tools -->
+                    <ul class="nav nav-pills custom-pills-danger mb-4" id="ai-hub-tabs">
+                        <li class="nav-item">
+                            <button class="nav-link active rounded-pill" data-bs-toggle="pill" data-bs-target="#ai-text" type="button">Content Writing</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link rounded-pill" data-bs-toggle="pill" data-bs-target="#ai-media" type="button">Creative Studio</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link rounded-pill" data-bs-toggle="pill" data-bs-target="#ai-social" type="button">Social Media</button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content" id="ai-hub-content">
+                        <!-- AI TEXT GENERATORS -->
+                        <div class="tab-pane fade show active" id="ai-text" role="tabpanel">
+                            <div class="row g-3">
+                                <div class="col-6" onclick="openAITool('shayari', 'Santali Shayari Generator', 'Generate traditional or modern romantic/sad/patriotic Santali shayaris with full translations.', 'Write a soulful Santali Shayari on')">
+                                    <div class="ai-tool-card glass-card p-3 shadow-sm border-top border-3 border-danger h-100">
+                                        <span class="material-symbols-outlined text-danger fs-1 mb-2">favorite</span>
+                                        <h6 class="fw-bold text-dark m-0">Shayari Generator</h6>
+                                        <p class="small text-muted m-0">Cultural poetic shayari</p>
+                                    </div>
+                                </div>
+                                <div class="col-6" onclick="openAITool('song', 'Santali Song Generator', 'Compose lyrics for Santali songs (Sohrai, Hul, modern romantic/pop) with dynamic rhyming structures.', 'Compose a complete Santali song lyric about')">
+                                    <div class="ai-tool-card glass-card p-3 shadow-sm border-top border-3 border-danger h-100">
+                                        <span class="material-symbols-outlined text-danger fs-1 mb-2">music_note</span>
+                                        <h6 class="fw-bold text-dark m-0">Song Generator</h6>
+                                        <p class="small text-muted m-0">Generate song lyrics</p>
+                                    </div>
+                                </div>
+                                <div class="col-6" onclick="openAITool('poem', 'Santali Poem Generator', 'Write deep Santali poems celebrating nature, identity, Raghunath Murmu, or traditional folklore.', 'Write a classical Santali poem about')">
+                                    <div class="ai-tool-card glass-card p-3 shadow-sm border-top border-3 border-danger h-100">
+                                        <span class="material-symbols-outlined text-danger fs-1 mb-2">auto_stories</span>
+                                        <h6 class="fw-bold text-dark m-0">Poem Generator</h6>
+                                        <p class="small text-muted m-0">Beautiful literature poems</p>
+                                    </div>
+                                </div>
+                                <div class="col-6" onclick="openAITool('story', 'Santali Story Generator', 'Generate Santali moral stories or folklore tales with modern life lessons.', 'Write an engaging Santali folk story with a moral about')">
+                                    <div class="ai-tool-card glass-card p-3 shadow-sm border-top border-3 border-danger h-100">
+                                        <span class="material-symbols-outlined text-danger fs-1 mb-2">book</span>
+                                        <h6 class="fw-bold text-dark m-0">Story Generator</h6>
+                                        <p class="small text-muted m-0">Generate Santali tales</p>
+                                    </div>
+                                </div>
+                                <div class="col-6" onclick="openAITool('resume', 'AI Resume Builder', 'Build professional resumes or curriculum vitaes tailored for modern job hunting.', 'Create a professional high-impact resume in English and Santali for a candidate with skills:')">
+                                    <div class="ai-tool-card glass-card p-3 shadow-sm border-top border-3 border-danger h-100">
+                                        <span class="material-symbols-outlined text-danger fs-1 mb-2">contact_page</span>
+                                        <h6 class="fw-bold text-dark m-0">Resume Generator</h6>
+                                        <p class="small text-muted m-0">Build professional CVs</p>
+                                    </div>
+                                </div>
+                                <div class="col-6" onclick="openAITool('letter', 'AI Letter Writer', 'Draft formal, business, or personal letters in Santali, Hindi, Bengali, or English.', 'Write a polite official letter for')">
+                                    <div class="ai-tool-card glass-card p-3 shadow-sm border-top border-3 border-danger h-100">
+                                        <span class="material-symbols-outlined text-danger fs-1 mb-2">mail</span>
+                                        <h6 class="fw-bold text-dark m-0">Letter Writer</h6>
+                                        <p class="small text-muted m-0">Formal & personal letters</p>
+                                    </div>
+                                </div>
+                                <div class="col-6" onclick="openAITool('blog', 'AI Blog Post Writer', 'Write SEO-friendly, fully optimized blog articles and news pieces.', 'Create an SEO-optimized blog article with outline about')">
+                                    <div class="ai-tool-card glass-card p-3 shadow-sm border-top border-3 border-danger h-100">
+                                        <span class="material-symbols-outlined text-danger fs-1 mb-2">article</span>
+                                        <h6 class="fw-bold text-dark m-0">AI Blog Writer</h6>
+                                        <p class="small text-muted m-0">Create long blog posts</p>
+                                    </div>
+                                </div>
+                                <div class="col-6" onclick="openAITool('logo', 'AI Logo Idea Generator', 'Brainstorm and generate descriptive concepts and prompts for logo designers.', 'Generate 5 unique logo design text prompts and descriptions for')">
+                                    <div class="ai-tool-card glass-card p-3 shadow-sm border-top border-3 border-danger h-100">
+                                        <span class="material-symbols-outlined text-danger fs-1 mb-2">brush</span>
+                                        <h6 class="fw-bold text-dark m-0">AI Logo Concepts</h6>
+                                        <p class="small text-muted m-0">Design creative briefs</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AI CREATIVE EDITORS & MEDIA -->
+                        <div class="tab-pane fade" id="ai-media" role="tabpanel">
+                            <div class="row g-3">
+                                <div class="col-12" onclick="navigateToSubFeature('photo_editor')">
+                                    <div class="ai-tool-card glass-card p-3 shadow-sm border-top border-3 border-primary d-flex align-items-center gap-3">
+                                        <span class="material-symbols-outlined text-primary fs-1">photo_camera</span>
+                                        <div>
+                                            <h6 class="fw-bold text-dark m-0">AI Photo Editor Studio</h6>
+                                            <p class="small text-muted m-0">Background remove, anime filters, colorize & beauty controls.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12" onclick="navigateToSubFeature('video_editor')">
+                                    <div class="ai-tool-card glass-card p-3 shadow-sm border-top border-3 border-primary d-flex align-items-center gap-3">
+                                        <span class="material-symbols-outlined text-primary fs-1">movie</span>
+                                        <div>
+                                            <h6 class="fw-bold text-dark m-0">AI Video Editor Workbench</h6>
+                                            <p class="small text-muted m-0">Trimming, subtitle generation, slow-mo, and voiceover effects.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6" onclick="openAITool('image_prompt', 'AI Image Prompt Generator', 'Generate rich Midjourney/DALL-E prompt scripts.', 'Generate a highly detailed photorealistic image prompt for')">
+                                    <div class="ai-tool-card glass-card p-3 shadow-sm border-top border-3 border-primary h-100">
+                                        <span class="material-symbols-outlined text-primary fs-1 mb-2">image_search</span>
+                                        <h6 class="fw-bold text-dark m-0">AI Image Prompter</h6>
+                                        <p class="small text-muted m-0">Create art prompts</p>
+                                    </div>
+                                </div>
+                                <div class="col-6" onclick="openAITool('video_prompt', 'AI Video Prompt Generator', 'Build advanced prompts for Sora, Runway or Kling.', 'Generate an immersive cinema video generation prompt for')">
+                                    <div class="ai-tool-card glass-card p-3 shadow-sm border-top border-3 border-primary h-100">
+                                        <span class="material-symbols-outlined text-primary fs-1 mb-2">video_camera_back</span>
+                                        <h6 class="fw-bold text-dark m-0">AI Video Prompter</h6>
+                                        <p class="small text-muted m-0">Prompt templates for AI video</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AI SOCIAL MEDIA CREATIVE -->
+                        <div class="tab-pane fade" id="ai-social" role="tabpanel">
+                            <div class="row g-3">
+                                <div class="col-6" onclick="openAITool('caption', 'AI Social Captions', 'Generate viral, highly engaging captions for Instagram, Facebook or Reels.', 'Write 3 viral, engaging social media captions with emojis in Santali and English for:')">
+                                    <div class="ai-tool-card glass-card p-3 shadow-sm border-top border-3 border-warning h-100">
+                                        <span class="material-symbols-outlined text-warning fs-1 mb-2">subtitles</span>
+                                        <h6 class="fw-bold text-dark m-0">Caption Writer</h6>
+                                        <p class="small text-muted m-0">Engaging post captions</p>
+                                    </div>
+                                </div>
+                                <div class="col-6" onclick="openAITool('hashtags', 'AI Hashtags Generator', 'Generate trending, context-aware hashtags.', 'Generate 20 trending and highly relevant hashtags for:')">
+                                    <div class="ai-tool-card glass-card p-3 shadow-sm border-top border-3 border-warning h-100">
+                                        <span class="material-symbols-outlined text-warning fs-1 mb-2">tag</span>
+                                        <h6 class="fw-bold text-dark m-0">Hashtag Suite</h6>
+                                        <p class="small text-muted m-0">Viral discoverability tags</p>
+                                    </div>
+                                </div>
+                                <div class="col-6" onclick="openAITool('reels_script', 'AI Reels/TikTok Script', 'Generate highly engaging 30s-60s Reels scripts with visual descriptions.', 'Write a highly engaging 30-second vertical reels script (including hooks, visual instructions and audio suggestions) about:')">
+                                    <div class="ai-tool-card glass-card p-3 shadow-sm border-top border-3 border-warning h-100">
+                                        <span class="material-symbols-outlined text-warning fs-1 mb-2">slideshow</span>
+                                        <h6 class="fw-bold text-dark m-0">Reels Script</h6>
+                                        <p class="small text-muted m-0">Fast pacing hooks & scripts</p>
+                                    </div>
+                                </div>
+                                <div class="col-6" onclick="openAITool('youtube_desc', 'AI YouTube Description', 'Draft detailed description scripts, chapter benchmarks, and meta tags.', 'Draft an attractive professional YouTube video description with timestamps, social links and call-to-actions for a video on:')">
+                                    <div class="ai-tool-card glass-card p-3 shadow-sm border-top border-3 border-warning h-100">
+                                        <span class="material-symbols-outlined text-warning fs-1 mb-2">description</span>
+                                        <h6 class="fw-bold text-dark m-0">YT Description</h6>
+                                        <p class="small text-muted m-0">Optimize video SEO metadata</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- UTILITIES TAB VIEW -->
+            <section id="view-utilities" class="tab-view">
+                <div class="container py-3">
+                    <h3 class="fw-bold mb-1 text-teal">AtoZ Smart Utilities</h3>
+                    <p class="text-muted mb-4">Functional daily tools for organization, calculations, and local management.</p>
+
+                    <!-- Nav pills for Utilities -->
+                    <ul class="nav nav-pills custom-pills-teal mb-4" id="utility-tabs">
+                        <li class="nav-item">
+                            <button class="nav-link active rounded-pill" data-bs-toggle="pill" data-bs-target="#util-productivity" type="button">Productivity</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link rounded-pill" data-bs-toggle="pill" data-bs-target="#util-calc" type="button">Calculator Hub</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link rounded-pill" data-bs-toggle="pill" data-bs-target="#util-scanner" type="button">QR & PDF</button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content" id="util-tabs-content">
+                        <!-- PRODUCTIVITY TOOLS -->
+                        <div class="tab-pane fade show active" id="util-productivity" role="tabpanel">
+                            <!-- Simple Notes Widget -->
+                            <div class="glass-card p-3 mb-3 shadow-sm border-start border-teal border-4">
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <h5 class="fw-bold m-0 text-teal"><span class="material-symbols-outlined align-middle me-1">edit_note</span>Cultural Notes</h5>
+                                    <button class="btn btn-sm btn-teal rounded-pill text-white" onclick="saveNote()">Save Note</button>
+                                </div>
+                                <textarea class="form-control mb-2" id="note-text-area" rows="4" placeholder="Write down your learning notes, vocabulary lists or thoughts here..."></textarea>
+                                <div id="notes-list-container" class="d-flex gap-2 flex-wrap"></div>
+                            </div>
+
+                            <!-- To-Do List Widget -->
+                            <div class="glass-card p-3 mb-3 shadow-sm">
+                                <h5 class="fw-bold mb-3 text-teal"><span class="material-symbols-outlined align-middle me-1">playlist_add_check</span>My Learning To-Do</h5>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" id="todo-input" placeholder="Type a task (e.g. Learn 5 words)...">
+                                    <button class="btn btn-teal text-white" onclick="addTodo()">Add</button>
+                                </div>
+                                <ul class="list-group list-group-flush" id="todo-list">
+                                    <!-- Populated programmatically -->
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- CALCULATORS & CONVERTERS -->
+                        <div class="tab-pane fade" id="util-calc" role="tabpanel">
+                            <!-- Calculator Widget -->
+                            <div class="glass-card p-3 mb-3 shadow-sm">
+                                <h5 class="fw-bold mb-3 text-teal">Calculator</h5>
+                                <div class="calc-screen p-3 rounded mb-3 bg-dark text-white text-end fs-4 font-monospace" id="calc-display">0</div>
+                                <div class="row row-cols-4 g-2 text-center">
+                                    <div class="col"><button class="btn btn-light w-100 py-3" onclick="pressCalc('C')">C</button></div>
+                                    <div class="col"><button class="btn btn-light w-100 py-3" onclick="pressCalc('/')">/</button></div>
+                                    <div class="col"><button class="btn btn-light w-100 py-3" onclick="pressCalc('*')">*</button></div>
+                                    <div class="col"><button class="btn btn-danger text-white w-100 py-3" onclick="pressCalc('back')">⌫</button></div>
+                                    <div class="col"><button class="btn btn-secondary text-white w-100 py-3" onclick="pressCalc('7')">7</button></div>
+                                    <div class="col"><button class="btn btn-secondary text-white w-100 py-3" onclick="pressCalc('8')">8</button></div>
+                                    <div class="col"><button class="btn btn-secondary text-white w-100 py-3" onclick="pressCalc('9')">9</button></div>
+                                    <div class="col"><button class="btn btn-light w-100 py-3" onclick="pressCalc('-')">-</button></div>
+                                    <div class="col"><button class="btn btn-secondary text-white w-100 py-3" onclick="pressCalc('4')">4</button></div>
+                                    <div class="col"><button class="btn btn-secondary text-white w-100 py-3" onclick="pressCalc('5')">5</button></div>
+                                    <div class="col"><button class="btn btn-secondary text-white w-100 py-3" onclick="pressCalc('6')">6</button></div>
+                                    <div class="col"><button class="btn btn-light w-100 py-3" onclick="pressCalc('+')">+</button></div>
+                                    <div class="col"><button class="btn btn-secondary text-white w-100 py-3" onclick="pressCalc('1')">1</button></div>
+                                    <div class="col"><button class="btn btn-secondary text-white w-100 py-3" onclick="pressCalc('2')">2</button></div>
+                                    <div class="col"><button class="btn btn-secondary text-white w-100 py-3" onclick="pressCalc('3')">3</button></div>
+                                    <div class="col-6"><button class="btn btn-secondary text-white w-100 py-3" onclick="pressCalc('0')">0</button></div>
+                                    <div class="col"><button class="btn btn-secondary text-white w-100 py-3" onclick="pressCalc('.')">.</button></div>
+                                    <div class="col-3"><button class="btn btn-teal text-white w-100 py-3" onclick="pressCalc('=')">=</button></div>
+                                </div>
+                            </div>
+
+                            <!-- Age Calculator -->
+                            <div class="glass-card p-3 mb-3 shadow-sm">
+                                <h5 class="fw-bold mb-3 text-teal">Age Calculator</h5>
+                                <div class="mb-3">
+                                    <label class="form-label text-muted">Select Birth Date</label>
+                                    <input type="date" class="form-control" id="birthdate-input">
+                                </div>
+                                <button class="btn btn-teal text-white w-100" onclick="calculateAge()">Calculate Age</button>
+                                <div id="age-result" class="mt-3 text-center fs-5 fw-bold text-teal d-none"></div>
+                            </div>
+                        </div>
+
+                        <!-- QR CODES AND SCANNERS -->
+                        <div class="tab-pane fade" id="util-scanner" role="tabpanel">
+                            <!-- QR Generator -->
+                            <div class="glass-card p-3 mb-3 shadow-sm">
+                                <h5 class="fw-bold mb-3 text-teal">QR Code Generator</h5>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" id="qr-input" placeholder="Type text or link here...">
+                                </div>
+                                <button class="btn btn-teal text-white w-100" onclick="generateQR()">Generate QR Code</button>
+                                <div class="text-center mt-3 d-none" id="qr-image-container">
+                                    <img id="qr-img" src="" alt="QR Code" class="img-fluid border p-2 rounded bg-white shadow-xs">
+                                    <br>
+                                    <button class="btn btn-sm btn-outline-teal mt-2" onclick="downloadQR()">Save to Gallery</button>
+                                </div>
+                            </div>
+
+                            <!-- Local QR Scanner Mock/Demo -->
+                            <div class="glass-card p-3 mb-3 shadow-sm">
+                                <h5 class="fw-bold mb-3 text-teal">QR Scanner / OCR</h5>
+                                <p class="small text-muted">Use the device camera to scan codes and perform instant OCR translation.</p>
+                                <button class="btn btn-teal text-white w-100" onclick="triggerQRScanner()"><span class="material-symbols-outlined align-middle me-1">qr_code_scanner</span>Launch Intelligent Scanner</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SETTINGS & HISTORY TAB VIEW -->
+            <section id="view-settings" class="tab-view">
+                <div class="container py-3">
+                    <h3 class="fw-bold mb-1 text-dark">Profile & App Configurations</h3>
+                    <p class="text-muted mb-4">Manage your accounts, cultural preferences, theme overrides and history.</p>
+
+                    <!-- Profile Header Card -->
+                    <div class="glass-card p-3 mb-4 d-flex align-items-center gap-3 shadow-sm">
+                        <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Johar" alt="Profile" class="user-avatar-large rounded-circle" id="profile-avatar">
+                        <div class="flex-grow-1">
+                            <h5 class="fw-bold m-0" id="profile-display-name">Guest Student</h5>
+                            <p class="small text-muted m-0">Santali Cultural Apprentice</p>
+                            <span class="badge bg-success-light text-success mt-1">Level 1: Novice</span>
+                        </div>
+                        <button class="icon-btn" onclick="openProfileEdit()" title="Edit profile">
+                            <span class="material-symbols-outlined">edit</span>
+                        </button>
+                    </div>
+
+                    <!-- App Settings Options -->
+                    <div class="glass-card p-0 shadow-sm overflow-hidden mb-4">
+                        <div class="list-group list-group-flush">
+                            <!-- Toggle Mode -->
+                            <div class="list-group-item d-flex align-items-center justify-content-between p-3">
+                                <div class="d-flex align-items-center gap-3">
+                                    <span class="material-symbols-outlined text-muted">dark_mode</span>
+                                    <div>
+                                        <h6 class="fw-bold m-0">Dark Mode Colorway</h6>
+                                        <p class="small text-muted m-0">Optimize battery and screen comfort.</p>
+                                    </div>
+                                </div>
+                                <div class="form-check form-switch m-0">
+                                    <input class="form-check-input" type="checkbox" id="dark-mode-switch" onchange="toggleTheme()">
+                                </div>
+                            </div>
+                            <!-- App Language -->
+                            <div class="list-group-item d-flex align-items-center justify-content-between p-3" onclick="changeAppLanguage()">
+                                <div class="d-flex align-items-center gap-3">
+                                    <span class="material-symbols-outlined text-muted">language</span>
+                                    <div>
+                                        <h6 class="fw-bold m-0">Primary Interface Language</h6>
+                                        <p class="small text-muted m-0">Choose English, Bengali, Hindi or Santali.</p>
+                                    </div>
+                                </div>
+                                <span class="badge bg-light text-dark border" id="current-lang-badge">English</span>
+                            </div>
+                            <!-- Login Flow Mock -->
+                            <div class="list-group-item d-flex align-items-center justify-content-between p-3" onclick="triggerAuthFlow()">
+                                <div class="d-flex align-items-center gap-3">
+                                    <span class="material-symbols-outlined text-muted">person_add</span>
+                                    <div>
+                                        <h6 class="fw-bold m-0">Account Synchronization</h6>
+                                        <p class="small text-muted m-0">Connect via Google or Phone Firebase logs.</p>
+                                    </div>
+                                </div>
+                                <span class="badge bg-danger" id="sync-status">MOCK OFF</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cultural Lore section inside settings -->
+                    <h5 class="section-title mb-3">Santhal Lore & Identity</h5>
+                    <div class="row g-3 mb-4">
+                        <div class="col-6" onclick="openHeroModal('sidhukanhu')">
+                            <div class="glass-card p-3 text-center shadow-xs">
+                                <span class="material-symbols-outlined text-success fs-1 mb-1">shield</span>
+                                <h6 class="fw-bold m-0">Santhal Rebellion</h6>
+                                <p class="small text-muted m-0">1855 Great Revolt</p>
+                            </div>
+                        </div>
+                        <div class="col-6" onclick="openHeroModal('birsamunda')">
+                            <div class="glass-card p-3 text-center shadow-xs">
+                                <span class="material-symbols-outlined text-danger fs-1 mb-1">swords</span>
+                                <h6 class="fw-bold m-0">Ulgulan Rebellion</h6>
+                                <p class="small text-muted m-0">Birsa Munda War</p>
+                            </div>
+                        </div>
+                        <div class="col-12" onclick="openHeroModal('culture')">
+                            <div class="glass-card p-3 shadow-xs d-flex align-items-center gap-3">
+                                <span class="material-symbols-outlined text-warning fs-1">palette</span>
+                                <div class="text-start">
+                                    <h6 class="fw-bold m-0">Dress & Festivals (Baha, Sohrai)</h6>
+                                    <p class="small text-muted m-0">Traditional costumes, drums, and folk dances.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- About App -->
+                    <div class="glass-card p-3 shadow-sm text-center bg-success-light border border-success">
+                        <h6 class="fw-bold text-success mb-1">Johar Santali Workspace v2.5</h6>
+                        <p class="small text-muted mb-0">Proudly preserving and empowering the tribal heritage of the Santhal people worldwide using edge cognitive neural artificial intelligence.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Safe Space Navigation Bar -->
+        <nav class="app-bottom-nav fixed-bottom d-flex justify-content-around py-2 border-top shadow">
+            <button class="nav-item-btn active" id="btn-tab-home" onclick="navigateToTab('home')">
+                <span class="material-symbols-outlined">home</span>
+                <span class="nav-btn-label">Home</span>
+            </button>
+            <button class="nav-item-btn" id="btn-tab-learn" onclick="navigateToTab('learn')">
+                <span class="material-symbols-outlined">school</span>
+                <span class="nav-btn-label">Learn</span>
+            </button>
+            <button class="nav-item-btn" id="btn-tab-ai-tools" onclick="navigateToTab('ai-tools')">
+                <span class="material-symbols-outlined">smart_toy</span>
+                <span class="nav-btn-label">AI Studio</span>
+            </button>
+            <button class="nav-item-btn" id="btn-tab-utilities" onclick="navigateToTab('utilities')">
+                <span class="material-symbols-outlined">widgets</span>
+                <span class="nav-btn-label">AtoZ Tools</span>
+            </button>
+            <button class="nav-item-btn" id="btn-tab-settings" onclick="navigateToTab('settings')">
+                <span class="material-symbols-outlined">manage_accounts</span>
+                <span class="nav-btn-label">Settings</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- SUB-FEATURE MODALS & DRAWERS -->
+
+    <!-- Generic AI Tool generation drawer -->
+    <div id="ai-tool-drawer" class="custom-drawer shadow-lg">
+        <div class="drawer-header d-flex justify-content-between align-items-center px-3 py-3 border-bottom">
+            <h5 class="fw-bold m-0" id="drawer-title">AI Tool</h5>
+            <button class="btn-close" onclick="closeDrawer()"></button>
+        </div>
+        <div class="drawer-body p-3">
+            <p class="text-muted small mb-3" id="drawer-desc"></p>
+            <div class="mb-3">
+                <label class="form-label fw-bold">Topic, Content, or Parameters</label>
+                <textarea class="form-control" id="drawer-prompt-input" rows="3" placeholder="Enter topic details (e.g., love, nature, Sohrai, etc.)..."></textarea>
+            </div>
+            <div class="row g-2 mb-3">
+                <div class="col-6">
+                    <label class="form-label small">Target Tone / Style</label>
+                    <select class="form-select" id="drawer-tone">
+                        <option value="Traditional">Traditional</option>
+                        <option value="Modern">Modern</option>
+                        <option value="Emotional">Emotional</option>
+                        <option value="Formal">Formal</option>
+                    </select>
+                </div>
+                <div class="col-6">
+                    <label class="form-label small">Output Language</label>
+                    <select class="form-select" id="drawer-lang">
+                        <option value="Santali (Ol Chiki)">Santali (Ol Chiki)</option>
+                        <option value="Santali (Latin)">Santali (Latin)</option>
+                        <option value="Bengali">Bengali</option>
+                        <option value="Hindi">Hindi</option>
+                        <option value="English">English</option>
+                    </select>
+                </div>
+            </div>
+            <button class="btn btn-danger w-100 rounded-pill py-2 mb-3" id="ai-gen-submit-btn" onclick="executeAIGeneration()">
+                <span class="material-symbols-outlined align-middle me-1">auto_awesome</span>Generate with Gemini AI
+            </button>
+
+            <!-- Loader -->
+            <div class="text-center py-4 d-none" id="drawer-loader">
+                <div class="spinner-border text-danger" role="status"></div>
+                <p class="small text-muted mt-2">Gemini is drafting creative contents...</p>
+            </div>
+
+            <!-- Result -->
+            <div class="ai-result-box d-none" id="drawer-result-box">
+                <div class="d-flex justify-content-end gap-2 mb-2">
+                    <button class="btn btn-xs btn-outline-secondary py-1 px-2 text-xs" onclick="copyDrawerResult()"><span class="material-symbols-outlined fs-6 align-middle me-1">content_copy</span>Copy</button>
+                    <button class="btn btn-xs btn-outline-secondary py-1 px-2 text-xs" onclick="speakText(document.getElementById('drawer-result-text').innerText)"><span class="material-symbols-outlined fs-6 align-middle me-1">volume_up</span>Speak</button>
+                </div>
+                <pre class="m-0 text-wrap font-monospace" id="drawer-result-text"></pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Chatbot Sub-feature Modal -->
+    <div id="ai-chat-modal" class="custom-full-modal shadow-lg">
+        <div class="modal-header d-flex justify-content-between align-items-center px-3 py-3 border-bottom bg-warning-light">
+            <div class="d-flex align-items-center gap-2">
+                <span class="material-symbols-outlined text-warning fs-3">smart_toy</span>
+                <div>
+                    <h5 class="fw-bold m-0">Johar AI Assistant</h5>
+                    <span class="small text-muted">Answers in Santali, Bengali, Hindi & English</span>
+                </div>
+            </div>
+            <button class="btn-close" onclick="closeSubModal('ai-chat-modal')"></button>
+        </div>
+        <div class="chat-body p-3 overflow-auto d-flex flex-column gap-3" id="chat-messages-container">
+            <div class="chat-message bot shadow-xs">
+                <p class="m-0">Johar! Saghun Daram. I am your Johar AI Assistant. Ask me anything about Santali culture, language, or any of your topics!</p>
+            </div>
+        </div>
+        <div class="chat-footer p-2 border-top bg-light">
+            <div class="input-group">
+                <button class="btn btn-outline-secondary rounded-start-pill" onclick="triggerVoiceInput('chat')"><span class="material-symbols-outlined align-middle">mic</span></button>
+                <input type="text" class="form-control" id="chat-input-text" placeholder="Ask Johar AI...">
+                <button class="btn btn-warning rounded-end-pill px-3" onclick="sendChatMessage()"><span class="material-symbols-outlined align-middle">send</span></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Translator Sub-feature Modal -->
+    <div id="ai-translator-modal" class="custom-full-modal shadow-lg">
+        <div class="modal-header d-flex justify-content-between align-items-center px-3 py-3 border-bottom bg-primary-light">
+            <div class="d-flex align-items-center gap-2">
+                <span class="material-symbols-outlined text-primary fs-3">g_translate</span>
+                <h5 class="fw-bold m-0">AI Cultural Translator</h5>
+            </div>
+            <button class="btn-close" onclick="closeSubModal('ai-translator-modal')"></button>
+        </div>
+        <div class="modal-body p-3 overflow-auto">
+            <div class="mb-3">
+                <label class="form-label small text-muted">Source Language</label>
+                <select class="form-select" id="trans-source">
+                    <option value="English">English</option>
+                    <option value="Bengali">Bengali</option>
+                    <option value="Hindi">Hindi</option>
+                    <option value="Santali (Ol Chiki)">Santali (Ol Chiki)</option>
+                </select>
+            </div>
+            <div class="mb-3 position-relative">
+                <textarea class="form-control border-primary" id="trans-source-text" rows="4" placeholder="Enter or paste text to translate..."></textarea>
+                <button class="btn btn-sm btn-outline-secondary position-absolute bottom-2 end-2 rounded-circle" style="bottom: 10px; right: 10px;" onclick="triggerVoiceInput('translator')">
+                    <span class="material-symbols-outlined fs-5 align-middle">mic</span>
+                </button>
+            </div>
+            <div class="d-flex justify-content-center my-2">
+                <button class="btn btn-sm btn-outline-primary rounded-pill px-3" onclick="swapLanguages()"><span class="material-symbols-outlined align-middle me-1">swap_vert</span>Swap</button>
+            </div>
+            <div class="mb-3">
+                <label class="form-label small text-muted">Target Language</label>
+                <select class="form-select" id="trans-target">
+                    <option value="Santali (Ol Chiki)">Santali (Ol Chiki)</option>
+                    <option value="Bengali">Bengali</option>
+                    <option value="Hindi">Hindi</option>
+                    <option value="English">English</option>
+                </select>
+            </div>
+            <button class="btn btn-primary w-100 rounded-pill py-2 mb-3" onclick="executeTranslation()">Translate Text</button>
+
+            <!-- Loader -->
+            <div class="text-center py-4 d-none" id="trans-loader">
+                <div class="spinner-border text-primary" role="status"></div>
+                <p class="small text-muted mt-2">Computing cultural equivalents...</p>
+            </div>
+
+            <!-- Result -->
+            <div class="ai-result-box d-none border border-primary bg-primary-light-opacity" id="trans-result-box">
+                <div class="d-flex justify-content-end gap-2 mb-2">
+                    <button class="btn btn-xs btn-outline-secondary py-1 px-2 text-xs" onclick="copyTranslationResult()"><span class="material-symbols-outlined fs-6 align-middle me-1">content_copy</span>Copy</button>
+                    <button class="btn btn-xs btn-outline-secondary py-1 px-2 text-xs" onclick="speakText(document.getElementById('trans-result-text').innerText)"><span class="material-symbols-outlined fs-6 align-middle me-1">volume_up</span>Speak</button>
+                </div>
+                <p class="m-0 fs-5 font-olchiki text-primary fw-bold" id="trans-result-text"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Photo Editor Sub-feature Modal -->
+    <div id="ai-photo-modal" class="custom-full-modal shadow-lg">
+        <div class="modal-header d-flex justify-content-between align-items-center px-3 py-3 border-bottom bg-pink-light">
+            <div class="d-flex align-items-center gap-2">
+                <span class="material-symbols-outlined text-pink fs-3">image_editor</span>
+                <h5 class="fw-bold m-0">Photo Studio Workbench</h5>
+            </div>
+            <button class="btn-close" onclick="closeSubModal('ai-photo-modal')"></button>
+        </div>
+        <div class="modal-body p-3 overflow-auto">
+            <!-- Upload section -->
+            <div class="text-center p-4 border border-dashed rounded-4 mb-3" id="photo-upload-zone" onclick="triggerPhotoUpload()">
+                <span class="material-symbols-outlined fs-1 text-pink mb-2">upload_file</span>
+                <p class="fw-semibold m-0">Upload Image to Edit</p>
+                <p class="small text-muted m-0">Supports JPG, PNG with real canvas engines</p>
+                <input type="file" id="photo-file-input" class="d-none" accept="image/*" onchange="loadPhotoToCanvas(event)">
+            </div>
+
+            <!-- Workspace preview -->
+            <div class="text-center d-none" id="photo-canvas-workspace">
+                <div class="canvas-container border rounded bg-light overflow-hidden shadow-xs mb-3">
+                    <canvas id="photo-editor-canvas" class="img-fluid"></canvas>
+                </div>
+
+                <!-- Editor Filters -->
+                <h6 class="fw-bold text-start mb-2">Smart Neural Filters</h6>
+                <div class="row g-2 text-center mb-4">
+                    <div class="col-4"><button class="btn btn-sm btn-outline-pink w-100 py-2 text-xs" onclick="applyPhotoEffect('enhance')">Enhance</button></div>
+                    <div class="col-4"><button class="btn btn-sm btn-outline-pink w-100 py-2 text-xs" onclick="applyPhotoEffect('cartoon')">Cartoon</button></div>
+                    <div class="col-4"><button class="btn btn-sm btn-outline-pink w-100 py-2 text-xs" onclick="applyPhotoEffect('anime')">Anime</button></div>
+                    <div class="col-4"><button class="btn btn-sm btn-outline-pink w-100 py-2 text-xs" onclick="applyPhotoEffect('beauty')">Beauty</button></div>
+                    <div class="col-4"><button class="btn btn-sm btn-outline-pink w-100 py-2 text-xs" onclick="applyPhotoEffect('bg_remove')">Bg Remove</button></div>
+                    <div class="col-4"><button class="btn btn-sm btn-outline-pink w-100 py-2 text-xs" onclick="applyPhotoEffect('colorize')">Colorize</button></div>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button class="btn btn-pink text-white flex-grow-1 py-2 rounded-pill" onclick="saveEditedPhoto()">Save Image</button>
+                    <button class="btn btn-outline-secondary py-2 rounded-pill px-4" onclick="resetPhotoCanvas()">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Video Editor Sub-feature Modal -->
+    <div id="ai-video-modal" class="custom-full-modal shadow-lg">
+        <div class="modal-header d-flex justify-content-between align-items-center px-3 py-3 border-bottom bg-purple-light">
+            <div class="d-flex align-items-center gap-2">
+                <span class="material-symbols-outlined text-purple fs-3">movie_edit</span>
+                <h5 class="fw-bold m-0">Video Editor Workbench</h5>
+            </div>
+            <button class="btn-close" onclick="closeSubModal('ai-video-modal')"></button>
+        </div>
+        <div class="modal-body p-3 overflow-auto text-center">
+            <!-- Video upload section -->
+            <div class="text-center p-4 border border-dashed rounded-4 mb-3" id="video-upload-zone" onclick="triggerVideoUpload()">
+                <span class="material-symbols-outlined fs-1 text-purple mb-2">video_file</span>
+                <p class="fw-semibold m-0">Upload Video to Edit</p>
+                <p class="small text-muted m-0">Trim, speed up, slow-mo, and apply AI Subtitles</p>
+                <input type="file" id="video-file-input" class="d-none" accept="video/*" onchange="loadVideoToWorkspace(event)">
+            </div>
+
+            <!-- Workspace preview -->
+            <div class="text-center d-none" id="video-workspace">
+                <div class="video-container border rounded bg-dark overflow-hidden shadow-xs mb-3">
+                    <video id="editor-video-preview" class="img-fluid w-100" controls></video>
+                </div>
+
+                <!-- Subtitles overlay simulated preview -->
+                <div id="subtitles-simulated-box" class="py-2 px-3 bg-dark text-warning rounded-pill mb-3 d-none font-monospace small">
+                    [AI Subtitle Frame: ᱡᱤᱣᱤᱫ ᱜᱮ ᱥᱮᱪᱮᱫ]
+                </div>
+
+                <h6 class="fw-bold text-start mb-2">Controls & FX</h6>
+                <div class="row g-2 text-center mb-4">
+                    <div class="col-6"><button class="btn btn-sm btn-outline-purple w-100 py-2 text-xs" onclick="applyVideoEffect('subtitles')">Generate Subtitles</button></div>
+                    <div class="col-6"><button class="btn btn-sm btn-outline-purple w-100 py-2 text-xs" onclick="applyVideoEffect('slow_mo')">Slow Motion (0.5x)</button></div>
+                    <div class="col-6"><button class="btn btn-sm btn-outline-purple w-100 py-2 text-xs" onclick="applyVideoEffect('fast')">Fast Speed (1.5x)</button></div>
+                    <div class="col-6"><button class="btn btn-sm btn-outline-purple w-100 py-2 text-xs" onclick="applyVideoEffect('reverse')">Reverse Video</button></div>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button class="btn btn-purple text-white flex-grow-1 py-2 rounded-pill" onclick="saveEditedVideo()">Export Video</button>
+                    <button class="btn btn-outline-secondary py-2 rounded-pill px-4" onclick="resetVideoWorkspace()">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Santali Music Section Modal -->
+    <div id="santali-music-modal" class="custom-full-modal shadow-lg">
+        <div class="modal-header d-flex justify-content-between align-items-center px-3 py-3 border-bottom bg-success-light">
+            <div class="d-flex align-items-center gap-2">
+                <span class="material-symbols-outlined text-success fs-3">library_music</span>
+                <h5 class="fw-bold m-0">Santali Music Vault</h5>
+            </div>
+            <button class="btn-close" onclick="closeSubModal('santali-music-modal')"></button>
+        </div>
+        <div class="modal-body p-3 overflow-auto">
+            <!-- Audio Player Widget -->
+            <div class="music-player-widget glass-card p-4 rounded-4 shadow text-center mb-4 border border-success">
+                <span class="material-symbols-outlined fs-1 text-success pulse-animation mb-2" id="music-playing-icon">music_note</span>
+                <h5 class="fw-bold m-0" id="music-track-title">Procedural Traditional Melodies</h5>
+                <p class="small text-muted mb-3" id="music-track-artist">Procedural Drum Synth Beat</p>
+                
+                <div class="d-flex justify-content-center align-items-center gap-4">
+                    <button class="icon-btn" onclick="prevMusic()"><span class="material-symbols-outlined fs-2">skip_previous</span></button>
+                    <button class="icon-btn-large bg-success text-white rounded-circle shadow" id="music-play-btn" onclick="toggleMusicPlayback()"><span class="material-symbols-outlined fs-1">play_arrow</span></button>
+                    <button class="icon-btn" onclick="nextMusic()"><span class="material-symbols-outlined fs-2">skip_next</span></button>
+                </div>
+            </div>
+
+            <!-- Music Categories -->
+            <h6 class="fw-bold mb-3 text-muted">Curated Playlists</h6>
+            <div class="list-group list-group-flush mb-4">
+                <div class="list-group-item d-flex align-items-center justify-content-between p-3" onclick="playMusicTrack('Tumdak & Tamak Rhythm', 'Traditional Santhal Drum Beats')">
+                    <div class="d-flex align-items-center gap-3">
+                        <span class="material-symbols-outlined text-success">album</span>
+                        <div>
+                            <h6 class="fw-bold m-0">Tumdak & Tamak Rhythm</h6>
+                            <p class="small text-muted m-0">Harvest & festive beats</p>
+                        </div>
+                    </div>
+                    <span class="material-symbols-outlined text-success">play_circle</span>
+                </div>
+                <div class="list-group-item d-flex align-items-center justify-content-between p-3" onclick="playMusicTrack('Sohrai Dance Melody', 'Traditional Flute Synth')">
+                    <div class="d-flex align-items-center gap-3">
+                        <span class="material-symbols-outlined text-success">album</span>
+                        <div>
+                            <h6 class="fw-bold m-0">Sohrai Dance Melody</h6>
+                            <p class="small text-muted m-0">Folk flute synthesizers</p>
+                        </div>
+                    </div>
+                    <span class="material-symbols-outlined text-success">play_circle</span>
+                </div>
+                <div class="list-group-item d-flex align-items-center justify-content-between p-3" onclick="playMusicTrack('Hul Ulgulan Song', 'Santhal Patriotic Chorus')">
+                    <div class="d-flex align-items-center gap-3">
+                        <span class="material-symbols-outlined text-success">album</span>
+                        <div>
+                            <h6 class="fw-bold m-0">Hul Ulgulan Song</h6>
+                            <p class="small text-muted m-0">Commemorating 1855</p>
+                        </div>
+                    </div>
+                    <span class="material-symbols-outlined text-success">play_circle</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Generic Search Modal -->
+    <div id="global-search-modal" class="custom-full-modal shadow-lg">
+        <div class="modal-header d-flex justify-content-between align-items-center px-3 py-3 border-bottom">
+            <h5 class="fw-bold m-0">Search Everything</h5>
+            <button class="btn-close" onclick="closeSearchModal()"></button>
+        </div>
+        <div class="modal-body p-3">
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                <input type="text" class="form-control" id="global-search-input" placeholder="Type letters, words, history or tools..." oninput="executeGlobalSearch()">
+            </div>
+            <div class="d-flex flex-column gap-2" id="search-results-container">
+                <!-- Populated programmatically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Cultural Insights Modal -->
+    <div id="cultural-hero-modal" class="custom-full-modal shadow-lg">
+        <div class="modal-header d-flex justify-content-between align-items-center px-3 py-3 border-bottom bg-success-light">
+            <h5 class="fw-bold m-0" id="hero-modal-title">Cultural Lore</h5>
+            <button class="btn-close" onclick="closeHeroModal()"></button>
+        </div>
+        <div class="modal-body p-3 overflow-auto" id="hero-modal-body">
+            <!-- Dynamic Content -->
+        </div>
+    </div>
+
+    <!-- Interactive Quiz modal -->
+    <div id="quiz-modal" class="custom-full-modal shadow-lg">
+        <div class="modal-header d-flex justify-content-between align-items-center px-3 py-3 border-bottom bg-success-light text-success">
+            <h5 class="fw-bold m-0" id="quiz-modal-title">Quiz Arena</h5>
+            <button class="btn-close" onclick="closeQuiz()"></button>
+        </div>
+        <div class="modal-body p-3 overflow-auto text-center d-flex flex-column justify-content-between">
+            <div class="quiz-progress mb-3">
+                <div class="progress" style="height: 10px;">
+                    <div class="progress-bar bg-success" role="progressbar" id="quiz-progress-bar" style="width: 20%;"></div>
+                </div>
+                <div class="d-flex justify-content-between mt-1 text-muted small">
+                    <span id="quiz-score">Score: 0</span>
+                    <span id="quiz-question-counter">Question 1 of 5</span>
+                </div>
+            </div>
+            <div class="quiz-question-container my-4">
+                <h4 class="fw-bold mb-4" id="quiz-question">Which Ol Chiki letter is this?</h4>
+                <div class="letter-giant font-olchiki text-success mb-4" id="quiz-letter">ᱚ</div>
+            </div>
+            <div class="quiz-options d-flex flex-column gap-2 mb-4" id="quiz-options-box">
+                <button class="btn btn-outline-success py-3 rounded-4 fw-bold quiz-option-btn" onclick="checkAnswer(0)">Option A</button>
+                <button class="btn btn-outline-success py-3 rounded-4 fw-bold quiz-option-btn" onclick="checkAnswer(1)">Option B</button>
+                <button class="btn btn-outline-success py-3 rounded-4 fw-bold quiz-option-btn" onclick="checkAnswer(2)">Option C</button>
+                <button class="btn btn-outline-success py-3 rounded-4 fw-bold quiz-option-btn" onclick="checkAnswer(3)">Option D</button>
+            </div>
+            <button class="btn btn-success w-100 py-3 rounded-pill d-none" id="quiz-next-btn" onclick="nextQuestion()">Next Question</button>
+        </div>
+    </div>
+
+    <!-- Profile Edit Modal -->
+    <div id="profile-edit-modal" class="custom-full-modal shadow-lg">
+        <div class="modal-header d-flex justify-content-between align-items-center px-3 py-3 border-bottom">
+            <h5 class="fw-bold m-0">Edit Profile</h5>
+            <button class="btn-close" onclick="closeSubModal('profile-edit-modal')"></button>
+        </div>
+        <div class="modal-body p-3">
+            <div class="text-center mb-4">
+                <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Johar" alt="Profile" class="user-avatar-large rounded-circle border shadow-xs mb-2" id="profile-edit-avatar-img">
+                <div>
+                    <button class="btn btn-sm btn-outline-secondary" onclick="randomizeAvatar()">Randomize Avatar</button>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Display Name</label>
+                <input type="text" class="form-control" id="profile-name-input" value="Guest Student">
+            </div>
+            <button class="btn btn-success w-100 rounded-pill py-2" onclick="saveProfileChanges()">Save Changes</button>
+        </div>
+    </div>
+
+    <!-- Bootstrap & Custom Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

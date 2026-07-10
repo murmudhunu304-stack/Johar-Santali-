@@ -1,0 +1,6 @@
+{
+  "name": "Johar Santali",
+  "description": "A modern, highly immersive cultural hub and AI-powered learning workspace celebrating the Santali language and culture.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
